@@ -1,20 +1,12 @@
 package example;
 
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
-import com.amazonaws.services.dynamodbv2.model.AttributeValue;
-import com.amazonaws.services.dynamodbv2.model.PutItemRequest;
-import com.amazonaws.services.dynamodbv2.model.PutItemResult;
 import com.amazonaws.services.s3.model.Region;
-import example.dynamo.DynamoAdapter;
 import example.model.ObjectToConsume;
 import example.model.ObjectToProduce;
 import example.model.persistance.ObjectToProduceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Consumer;
 
 @Component("kinesisFunction")
