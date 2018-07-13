@@ -1,5 +1,10 @@
 package example.model;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+
+@DynamoDBTable(tableName = "object-to-produce")
 public class ObjectToProduce {
     private String name;
     private int age;
@@ -9,6 +14,7 @@ public class ObjectToProduce {
         passed = 10;
     }
 
+    @DynamoDBHashKey
     public String getName() {
         return name;
     }
@@ -17,6 +23,7 @@ public class ObjectToProduce {
         this.name = name;
     }
 
+    @DynamoDBAttribute
     public int getAge() {
         return age;
     }
