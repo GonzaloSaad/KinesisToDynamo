@@ -6,6 +6,7 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.PutItemRequest;
 import com.amazonaws.services.dynamodbv2.model.PutItemResult;
 import com.amazonaws.services.s3.model.Region;
+import example.dynamo.DynamoAdapter;
 import example.model.ObjectToConsume;
 import example.model.ObjectToProduce;
 import org.springframework.stereotype.Component;
@@ -18,27 +19,15 @@ import java.util.function.Consumer;
 public class TheFunction implements Consumer<ObjectToConsume>{
 
     private static final String tableName = "lambdatest";
+    private static final Region region = Region.SA_SaoPaulo;
     @Override
     public void accept(ObjectToConsume objectToConsume) {
 
         System.out.println(objectToConsume);
         ObjectToProduce object = objectToConsume.toProduce();
 
-        Map<String, AttributeValue> map = new HashMap<>();
-        map.put("name",new AttributeValue(object.getName()));
-        map.put("age", new AttributeValue(Integer.toString(object.getAge())));
-
-        AmazonDynamoDB db = AmazonDynamoDBClientBuilder
-                .standard()
-                .withRegion(Region.SA_SaoPaulo.toString())
-                .build();
-
-        PutItemRequest request = new PutItemRequest();
-        request.setTableName(tableName);
-        request.setItem(map);
-
-
-        PutItemResult result = db.putItem(request);
+        DynamoAdapter dynamoAdapter = new DynamoAdapter(tableName,region);
+        PutItemResult result = dynamoAdapter.putItem(object);
         System.out.println("Result: " + result.toString());
     }
 }
