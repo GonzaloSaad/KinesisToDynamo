@@ -31,7 +31,7 @@ public class ObjectToConsume {
     public ObjectToProduce toProduce(){
         ObjectToProduce object = new ObjectToProduce();
         object.setAge(age + 10);
-        object.setName(name + "L");
+        object.setName(name + "Produce");
         return object;
     }
 }

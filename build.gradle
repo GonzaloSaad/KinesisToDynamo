@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.5.12.RELEASE'
+        springBootVersion = '1.5.14.RELEASE'
         wrapperVersion = '1.0.11.RELEASE'
         shadowVersion = '2.0.1'
     }
@@ -77,8 +77,9 @@ configurations {
 dependencies {
     compile("org.springframework.cloud:spring-cloud-starter-function-web:${springCloudFunctionVersion}")
     compile("org.springframework.cloud:spring-cloud-function-adapter-aws:${springCloudFunctionVersion}")
-    //compile 'com.amazonaws:aws-java-sdk-dynamodb:1.10.45'
-    compile 'com.github.derjust:spring-data-dynamodb:4.2.0'
+    compile group: 'org.springframework.data', name: 'spring-data-commons', version: '1.13.13.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.5.14.RELEASE'
+    compile group: 'com.github.derjust', name: 'spring-data-dynamodb', version: '4.5.0'
     compile group: 'com.amazonaws', name: 'aws-lambda-java-events', version: '2.2.2'
     compile group: 'com.amazonaws', name: 'amazon-kinesis-deaggregator', version: '1.0.3'
     compile group: 'com.amazonaws', name: 'amazon-kinesis-aggregator', version: '1.0.3'
