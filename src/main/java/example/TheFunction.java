@@ -10,8 +10,6 @@ import java.util.function.Consumer;
 @Component("kinesisFunction")
 public class TheFunction implements Consumer<ObjectToConsume>{
 
-
-
     @Autowired
     ObjectToProduceRepository repository;
 
@@ -22,7 +20,7 @@ public class TheFunction implements Consumer<ObjectToConsume>{
 
         repository.save(object);
         try{
-            ObjectToProduce read = repository.findOne("gonzaL");
+            ObjectToProduce read = repository.findById("gonzaL").get();
             System.out.println(read);
         } catch (Exception e){
             System.out.println("Error: ");
